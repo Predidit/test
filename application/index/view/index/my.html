@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="{:url('authority/logout')}"><button>登出</button></a>
+	<a href="{:url('authority/login_api')}"><button>主页</button></a>
+	<p>我是{$user}</p>
+	<img src="/homework/public/{$picture}" onerror="javascript:this.src='/homework/public/uploads/public.png';" alt="一个大锅" />
+<!-- 	<a href="/homework/public/{$picture}"><button>test</button></a> -->
+<!-- 	<p>我是{$user}</p> -->
+	<form action="{:url('authority/upload')}" enctype="multipart/form-data" method="post"> 
+		<input type="file" name="image" /> 
+		<input type="submit" value="上传头像" /> 
+		<input type="hidden" name='user' value='{$user}'>
+	</form>
+</body>
+</html>
+
+
+
+
+<!-- <img src="/homework/public/uploads/{$picture}.png" onerror="javascript:this.src='/homework/public/uploads/public.png';" alt="一个大锅" /> -->
+

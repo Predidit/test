@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="{:url('authority/logout')}"><button>登出</button></a>
+    <p>我是{$user}</p>
+    <img src="/homework/public/{$picture}" onerror="javascript:this.src='/homework/public/uploads/public.png';" alt="pic" />
+    <a href="{:url('authority/login_api')}"><button>主页</button></a>
+	    <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>修改时间</th>
+                    <th>发布者</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data_a" id="vo" length='10' empty="暂时没有数据"}
+                <tr>
+                    <th>                        <form action="{:url('look')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='{$vo.word}'>
+                        </form>
+                    </th>
+                    <td>{$vo.xiugai}</td>
+                    <td>{$vo.belong}</td>
+                    <td><form action="{:url('shoucang_del')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='取消收藏'>
+                        </form>
+                    </td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<body>
+	<a href="{:url('authority/logout')}"><button>登出</button></a>
+    <a href="{:url('authority/login_api')}"><button>主页</button></a>
+        <p>单词表：{$wordname}</p>
+	    <table>
+            <thead>
+                <tr>
+                    <th>单词</th>
+                    <th>翻译</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data_a" id="vo" length='10' empty="暂时没有数据"}
+                <tr>
+                    <th>{$vo.word}</th>
+                    <td>{$vo.translate}</td>
+                    <td><form action="{:url('list_del')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="hidden" name="belong" value="{$wordname}">
+                            <input type="submit" value='删除'>
+                        </form>
+                    </td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+        <form action="{:url('list_add')}" method="post">
+            <input type="text" name='word'>
+            <input type="text" name='translate'>
+            <input type="hidden" name="belong" value="{$wordname}">
+            <input type="submit" value='新增'>
+        </form>
+</body>
+</html>

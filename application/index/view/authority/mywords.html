@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <p>我是{$user}</p>
+    <img src="/homework/public/{$picture}" onerror="javascript:this.src='/homework/public/uploads/public.png';" alt="pic" />
+    <a href="{:url('authority/login_api')}"><button>主页</button></a>
+    <a href="{:url('authority/logout')}"><button>登出</button></a>
+	    <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>上次修改时间</th>
+                    <th>发布状态</th>
+                    <th>更多</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data_a" id="vo" length='10' empty="暂时没有数据"}
+                <tr>
+                    <th>
+                        <form action="{:url('look')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='{$vo.word}'>
+                        </form>
+                    </th>
+                    <td>{$vo.xiugai}</td>
+                    <td>{$vo.status}</td>
+                    <td>
+                        <form action="{:url('xiugai')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='修改'>
+                        </form>
+                        {if condition="$vo.status == 0"}
+                        <form action="{:url('fabu')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='发布'>
+                        </form>
+                        {else /}
+                            <form action="{:url('cancel')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='取消发布'>
+                        </form>
+                        {/if}
+                        <form action="{:url('del')}" method="post">
+                            <input type="hidden" name="word" value="{$vo.word}"/>
+                            <input type="submit" value='删除'>
+                        </form>
+                    </td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+        <form action="{:url('add')}" method="post">
+            单词集名称：
+            <input type="text" name='word'>
+            <input type="hidden" name='user' value='{$user}'>
+            <input type="submit" value='新建单词集'>
+        </form>
+        <br>
+        <form action="{:url('upload_word')}" enctype="multipart/form-data" method="post"> 
+            <input type="file" name="excel" /> 
+            <input type="submit" value="导入单词集" /> 
+            <input type="hidden" name='user' value='{$user}'>
+        </form>
+</body>
+</html>
+
+
+
+
+<!-- 
+                           <form action="{:url('cancel')}" method="post">
+                                <input type="submit">
+                            </form> -->
+
+
+
+
+
+                            <!-- <input type="hidden" name="project_name" value="$project_name"/> -->
+
+
+
+   
+                           <!-- <a href="{:url('cancel')}?word={$vo.word}"><button>发布</button></a> -->
+
+
+
+
+                                               <th>{$vo.word}</th>
+<!--                     <td>{$vo.xiugai}</td>
+                    <td>{$vo.status}</td> -->

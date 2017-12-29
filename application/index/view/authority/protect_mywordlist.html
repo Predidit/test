@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="{:url('authority/logout')}"><button>登出</button></a>
+    <a href="{:url('authority/login_api')}"><button>主页</button></a>
+	    <table>
+            <thead>
+                <tr>
+                    <th>单词</th>
+                    <th>翻译</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="data_a" id="vo" length='10' empty="暂时没有数据"}
+                <tr>
+                    <th>{$vo.word}</th>
+                    <td>{$vo.translate}</td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+</body>
+</html>
